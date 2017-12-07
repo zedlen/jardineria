@@ -22,4 +22,26 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
+
+	public function addProduct()
+	{
+		$this->load->view('addProduct');
+	}
+
+	public function addP()
+	{
+		$params=$this->input->post();
+		echo json_encode($this->db->insert("producto",$params));
+	}
+	public function editProduct()
+	{
+		$this->load->view('editProduct');
+	}
+	public function editP()
+	{
+		$params=$this->input->post();
+		$this->db->where('Id_producto',$params["Id_producto"]);
+		unset($params["Id_producto"]);
+		echo json_encode($this->db->update("producto",$params));
+	}
 }

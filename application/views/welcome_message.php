@@ -4,12 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://jardinera.herokuapp.com/assets/vendors/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://jardinera.herokuapp.com/assets/vendors/font-awesome-4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title>Jardineria Diego Rodriguez</title>
 
 	<style type="text/css">
 
@@ -21,6 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		margin: 40px;
 		font: 13px/20px normal Helvetica, Arial, sans-serif;
 		color: #4F5155;
+		background-image: url("https://i.pinimg.com/originals/36/0f/21/360f215f621652608f877c7790324c1d.jpg");
 	}
 
 	a {
@@ -75,8 +76,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	#container {
 		margin: 10px;
+		padding: 20px;
 		border: 1px solid #D0D0D0;
 		box-shadow: 0 0 8px #D0D0D0;
+		background-color: #fff;
 	}
 	</style>
 </head>
@@ -84,7 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="container">
 	<h1>Jardinera</h1>
-	<p>Productos dsiponibles:<button type='button' class='btn btn-primary btn-sm btn-circle'><i class='fa fa-plus' aria-hidden='true'></i></button></p>
+	<p>Productos dsiponibles:<a href="<?php echo base_url();?>index.php/welcome/addProduct" class='btn btn-primary btn-sm btn-circle'><i class='fa fa-plus' aria-hidden='true'></i></a></p>
 	<?php
 		$this->db->select("*");
 		$this->db->join("proveedor","proveedor.Id_proveedor=producto.Id_proveedor");
@@ -125,7 +128,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<td>$value->Nombre_categoria</td>
 							<td>$value->Nombre_estado_producto</td>
 							<td>
-								<button type='button' class='btn btn-warning btn-sm btn-circle'><i class='fa fa-pencil' aria-hidden='true'></i></button>
+								<a href='".base_url()."index.php/welcome/editProduct?id=$value->Id_producto' class='btn btn-warning btn-sm btn-circle'><i class='fa fa-pencil' aria-hidden='true'></i></a>
 								<button type='button' class='btn btn-danger btn-sm btn-circle'><i class='fa fa-trash' aria-hidden='true'></i></button>
 							</td>
 						</tr>";
@@ -134,6 +137,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</tbody>
 		</table>
 	</div>
+	<footer> Realizado por Diego David Rodriguez Reyna</footer>
 </div>
 
 </body>
