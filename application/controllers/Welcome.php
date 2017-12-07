@@ -44,4 +44,11 @@ class Welcome extends CI_Controller {
 		unset($params["Id_producto"]);
 		echo json_encode($this->db->update("producto",$params));
 	}
+	public function deleteP()
+	{
+		$params=$this->input->post();
+		$this->db->where('Id_producto',$params["Id_producto"]);
+		unset($params["Id_producto"]);
+		echo json_encode($this->db->delete("producto"));
+	}
 }
