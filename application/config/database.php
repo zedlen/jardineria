@@ -73,14 +73,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-$url=parse_url(getenv("mysql://be581f53f6c3cc:e3dffb73@us-cdbr-east-05.cleardb.net/heroku_29745033f6a8f32?reconnect=true"));
-
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'hostname' => 'sql9.freesqldatabase.com',
+	'username' => 'sql9209455',
+	'password' => 'TeCr3PXnk9',
+	'database' => 'sql9209455',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -96,20 +94,3 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-/*
-
-$db['default']['hostname'] = 'us-cdbr-east-05.cleardb.net';
-$db['default']['username'] = $url["be581f53f6c3cc"];
-$db['default']['password'] = $url["e3dffb73"];
-$db['default']['database'] = substr($url["heroku_29745033f6a8f32"],1);
-$db['default']['dbdriver'] = 'mysql';
-$db['default']['dbprefix'] = '';
-$db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = TRUE;
-$db['default']['cache_on'] = FALSE;
-$db['default']['cachedir'] = '';
-$db['default']['char_set'] = 'utf8';
-$db['default']['dbcollat'] = 'utf8_general_ci';
-$db['default']['swap_pre'] = '';
-$db['default']['autoinit'] = TRUE;
-$db['default']['stricton'] = FALSE;*/
