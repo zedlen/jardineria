@@ -10,7 +10,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<script src="<?php echo base_url();?>bower_components/sweetalert2/dist/sweetalert2.all.min.js"></script>
+	<script src="<?php echo base_url();?>bower_components/bootstrap-waitingfor/build/bootstrap-waitingfor.min.js"></script>
+
+	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+	<title>Editar producto</title>
 
 	<style type="text/css">
 
@@ -191,8 +196,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	var form = document.getElementById('needs-validation');
 	$("#save").click(function() {		
 		if (form.checkValidity() === false) {
-		  alert('Faltan datos por ingresar')
+		  swal("Ooops..","Faltan datos por ingresar.","warning")
 		}else{
+			waitingDialog.show('Editando producto..',{dialogSize: 'sm',progressType: 'success'})
 			$.ajax({
 			  method: "POST",
 			  url: "<?php echo base_url()?>index.php/welcome/editP",
@@ -212,15 +218,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			})
 			.done(function( msg ) {
 				console.log(msg)
+				waitingDialog.hide()
 			    if (msg=="true") {
-			    	window.location.replace("<?php echo base_url();?>");
+			    	swal({
+			    	  title: 'Bien',
+			    	  text: "Producto editado correctamente!",
+			    	  type: 'success',
+			    	  confirmButtonColor: '#3085d6',			    	  
+			    	  confirmButtonText: 'Ok'
+			    	}).then((result) => {
+			    	  if (result.value) {
+			    	    window.location.replace("<?php echo base_url();?>");
+			    	  }
+			    	})	
 			    }
 			    else{
-			    	alert("Error al agregar producto")
+			    	swal("Error","Error al editar el producto.","error")
 			    }
 			})
 			.fail(function() {
-				alert("Error al agregar producto");
+				waitingDialog.hide()
+				swal("Error","Error al editar el producto.","error")
 			});
 		}
 		form.classList.add('was-validated');

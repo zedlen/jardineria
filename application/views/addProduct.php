@@ -4,11 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://jardinera.herokuapp.com/assets/vendors/font-awesome-4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/vendors/font-awesome-4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="<?php echo base_url();?>bower_components/sweetalert2/dist/sweetalert2.all.min.js"></script>
+	<script src="<?php echo base_url();?>bower_components/bootstrap-waitingfor/build/bootstrap-waitingfor.min.js"></script>
+
+	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
 
@@ -171,8 +176,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	var form = document.getElementById('needs-validation');
 	$("#save").click(function() {		
 		if (form.checkValidity() === false) {
-		  alert('Faltan datos por ingresar')
+		  swal("Ooops..","Faltan datos por ingresar.","warning")
 		}else{
+			waitingDialog.show('Agregando producto..',{dialogSize: 'sm',progressType: 'success'})
 			$.ajax({
 			  method: "POST",
 			  url: "<?php echo base_url()?>index.php/welcome/addP",
@@ -191,16 +197,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			  }
 			})
 			.done(function( msg ) {
+				waitingDialog.hide()
 				console.log(msg)
 			    if (msg=="true") {
-			    	window.location.replace("<?php echo base_url();?>");
+			    	swal({
+			    	  title: 'Bien',
+			    	  text: "Producto agregado correctamente!",
+			    	  type: 'success',
+			    	  confirmButtonColor: '#3085d6',			    	  
+			    	  confirmButtonText: 'Ok'
+			    	}).then((result) => {
+			    	  if (result.value) {
+			    	    window.location.replace("<?php echo base_url();?>");
+			    	  }
+			    	})			    	
 			    }
 			    else{
-			    	alert("Error al agregar producto")
+			    	swal("Error","Error al agregar el producto.","error")
 			    }
 			})
 			.fail(function() {
-				alert("Error al agregar producto");
+				waitingDialog.hide()
+				swal("Error","Error al agregar el producto.","error")
 			});
 		}
 		form.classList.add('was-validated');
