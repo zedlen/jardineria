@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		color: #4F5155;
 		background-image: url("https://i.pinimg.com/originals/36/0f/21/360f215f621652608f877c7790324c1d.jpg");
 	}
-
+	body { padding-top: 70px; }
 	a {
 		color: #003399;
 		background-color: transparent;
@@ -89,7 +89,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</style>
 </head>
 <body>
-
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class="container-fluid">
+	      <div class="navbar-header">
+	        <a class="navbar-brand" href="<?php echo base_url(); ?>">
+	          <i class="fa fa-leaf fa-6" aria-hidden="true" style="color: green;"></i><big> <big> <big>Jardineria La Floral</big> </big> </big>
+	        </a>
+	      </div>	      
+	    </div>
+	</nav>
 <div id="container">
 	<h1>Jardinera</h1>
 	<p>Editar Producto:</p>
