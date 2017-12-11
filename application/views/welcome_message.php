@@ -148,8 +148,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </body>
 <script type="text/javascript">
-	$(".delete").click(function() {
-		waitingDialog.show('Borrando producto..',{dialogSize: 'sm',progressType: 'danger'})
+	$(".delete").click(function() {		
 		swal({
 		  title: 'Seguro?',
 		  html: "Seguro que quieres borrar el producto? Esta accion es <b>irreversible</b>!",
@@ -159,8 +158,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		  cancelButtonColor: '#d33',
 		  confirmButtonText: 'Si, borrar!'
 		}).then((result) => {
+			
 		  if (result.value) {
-
+		  	waitingDialog.show('Borrando producto..',{dialogSize: 'sm',progressType: 'danger'})
 		  	$.ajax({
 		  	  method: "POST",
 		  	  url: "<?php echo base_url()?>index.php/welcome/deleteP",
