@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="<?php echo base_url();?>bower_components/sweetalert2/dist/sweetalert2.all.min.js"></script>
-	<script src="<?php echo base_url();?>bower_components/bootstrap-waitingfor/build/bootstrap-waitingfor.min.js"></script>
+	<script src="<?php echo base_url();?>bower_components/bootstrap-waitingfor/build/bootstrap-waitingfor.js"></script>
 
 	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
